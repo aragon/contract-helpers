@@ -1,0 +1,19 @@
+{
+  "name": "@aragon/truffle",
+  "version": "0.0.1",
+  "description": "Aragon default truffle configuration file",
+  "main": "",
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "aragon",
+    "ethereum"
+  ],
+  "author": "Aragon Association <legal@aragon.org>",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "truffle-hdwallet-provider": "0.0.3",
+    "truffle-hdwallet-provider-privkey": "0.3.0"
+  }
+}
