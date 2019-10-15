@@ -2,7 +2,6 @@ const homedir = require('os').homedir
 const path = require('path')
 
 const HDWalletProvider = require('truffle-hdwallet-provider')
-const HDWalletProviderPrivkey = require('truffle-hdwallet-provider-privkey')
 
 const DEFAULT_MNEMONIC =
   'explain tackle mirror kit van hammer degree position ginger unfair soup bonus'
@@ -36,7 +35,7 @@ const providerForNetwork = network => () => {
     return new HDWalletProvider(mnemonic(), rpc)
   }
 
-  return new HDWalletProviderPrivkey(keys, rpc)
+  return new HDWalletProvider(keys, rpc)
 }
 
 const mochaGasSettings = {

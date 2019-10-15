@@ -2,7 +2,7 @@
 
 ## Structure
 
-This is a monorepo with a set of helpers to develop Aragon smart contracts.
+This is a monorepo with a set of helpers to develop Aragon apps smart contracts.
 
 Contains the following packages:
 
