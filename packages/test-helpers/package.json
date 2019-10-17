@@ -13,6 +13,8 @@
     "solidity-coverage": "^0.6.2"
   },
   "devDependencies": {
-    "ethereumjs-abi": "^0.6.4"
+    "ethereumjs-abi": "^0.6.4",    
+    "web3-eth-abi": "^1.2.1",
+    "web3-utils": "^1.2.1"
   }
 }

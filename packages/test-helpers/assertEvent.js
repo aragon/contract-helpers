@@ -1,28 +1,30 @@
 const { getEventAt, getEvents } = require('./events')
+const { isAddress, isBN, toChecksumAddress } = require('web3-utils')
 
-module.exports = web3 => {
-  const assertEvent = (receipt, eventName, expectedArgs = {}, index = 0) => {
-    const event = getEventAt(receipt, eventName, index)
-    assert(typeof event === 'object', `could not find an emitted ${eventName} event ${index === 0 ? '' : `at index ${index}`}`)
+const assertEvent = (receipt, eventName, expectedArgs = {}, index = 0) => {
+  const event = getEventAt(receipt, eventName, index)
 
-    for (const arg of Object.keys(expectedArgs)) {
-      let foundArg = event.args[arg]
-      if (foundArg instanceof web3.BigNumber) foundArg = foundArg.toString()
+  assert(typeof event === 'object', `could not find an emitted ${eventName} event ${index === 0 ? '' : `at index ${index}`}`)
 
-      let expectedArg = expectedArgs[arg]
-      if (expectedArg instanceof web3.BigNumber) expectedArg = expectedArg.toString()
+  for (const arg of Object.keys(expectedArgs)) {
+    let foundArg = event.args[arg]
+    if (isBN(foundArg)) foundArg = foundArg.toString()
+    if (isAddress(foundArg)) foundArg = toChecksumAddress(foundArg)
 
-      assert.equal(foundArg, expectedArg, `${eventName} event ${arg} value does not match`)
-    }
+    let expectedArg = expectedArgs[arg]
+    if (isBN(expectedArg)) expectedArg = expectedArg.toString()
+    if (isAddress(foundArg)) expectedArg = toChecksumAddress(expectedArg)
+
+    assert.equal(foundArg, expectedArg, `${eventName} event ${arg} value does not match`)
   }
+}
 
-  const assertAmountOfEvents = (receipt, eventName, expectedAmount = 1) => {
-    const events = getEvents(receipt, eventName)
-    assert.equal(events.length, expectedAmount, `number of ${eventName} events does not match`)
-  }
+const assertAmountOfEvents = (receipt, eventName, expectedAmount = 1) => {
+  const events = getEvents(receipt, eventName)
+  assert.equal(events.length, expectedAmount, `number of ${eventName} events does not match`)
+}
 
-  return {
-    assertEvent,
-    assertAmountOfEvents
-  }
+module.exports = {
+  assertEvent,
+  assertAmountOfEvents
 }
