@@ -1,4 +1,16 @@
-# Truffle configuration file
+# Truffle configuration file v5
+
+## Install
+
+```
+$ npm install @aragon/truffle-config-v5
+```
+
+## Requirements
+
+```
+aragonCLI >= 6.4.0
+```
 
 ## Set a private key
 
