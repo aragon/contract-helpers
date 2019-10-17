@@ -10,4 +10,4 @@ Contains the following packages:
 - **[Minime](packages/minime)**: Lightly modified Minime smartcontract. See [original](https://github.com/Giveth/minime)
 - **[Scripts](packages/scripts)**: Shared scripts.
 - **[Test Helpers](packages/test-helpers)**: Tools to improve test experience of smart contracts on the Aragon framework
-- **[Truffle](packages/truffle)**: Default truffle configuration file used across Aragon apps
+- **[Truffle](packages/truffle)**: Default truffle configuration file used across Aragon smart contracts
