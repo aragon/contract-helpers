@@ -57,23 +57,15 @@ module.exports = {
       gas: 6.9e6,
       gasPrice: 15000000001,
     },
-    devnet: {
-      network_id: 16,
-      host: 'localhost',
-      port: 8535,
-      gas: 6.9e6,
-      gasPrice: 15000000001,
-    },
     mainnet: {
       network_id: 1,
       provider: providerForNetwork('mainnet'),
       gas: 7.9e6,
-      gasPrice: 3000000001,
     },
     ropsten: {
       network_id: 3,
       provider: providerForNetwork('ropsten'),
-      gas: 4.712e6,
+      gas: 7.9e6,
     },
     rinkeby: {
       network_id: 4,
@@ -93,27 +85,15 @@ module.exports = {
       gas: 0xffffffffff,
       gasPrice: 0x01,
     },
-    development: {
-      host: 'localhost',
-      network_id: '*',
-      port: 8545,
-      gas: 6.9e6,
-      gasPrice: 15000000001,
-    },
   },
+  build: {},
   mocha,
-  // Configure your compilers
-  compilers: {
-    solc: {
-      version: '0.4.24', // Fetch exact version from solc-bin (default: truffle's version)
-      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      settings: {
-        // See the solidity docs for advice about optimization and evmVersion
-        optimizer: {
-          enabled: true,
-          runs: 10000,
-        },
-      },
+  solc: {
+    optimizer: {
+      // See the solidity docs for advice about optimization and evmVersion
+      // https://solidity.readthedocs.io/en/v0.5.12/using-the-compiler.html#setting-the-evm-version-to-target
+      enabled: true,
+      runs: 10000,   // Optimize for how many times you intend to run the code
     },
   },
 }

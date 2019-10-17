@@ -11,9 +11,9 @@ For interacting with aragonCLI you can configure a private key in `~/.aragon`. C
 }
 ```
 
-Then if you use`--environment aragon:<network>` when using the aragonCLI commands it will use that account.
+aragonCLI will then use that account if you supply`--environment aragon:<network>` to its commands.
 
-You can also define a`~/.aragon/mnemonic.json` file like:
+You can also define a`~/.aragon/mnemonic.json` file instead of a single key, like:
 
 ```json
 {

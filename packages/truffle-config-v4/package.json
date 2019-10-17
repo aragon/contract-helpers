@@ -1,7 +1,7 @@
 {
-  "name": "@aragon/truffle",
+  "name": "@aragon/truffle-config-v4",
   "version": "0.0.1",
-  "description": "Aragon default truffle configuration file",
+  "description": "Aragon truffle configuration file v4",
   "main": "",
   "scripts": {
     "test": ""
@@ -13,6 +13,6 @@
   "author": "Aragon Association <legal@aragon.org>",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "truffle-hdwallet-provider": "0.0.3"
+    "@truffle/hdwallet-provider": "^1.0.0"
   }
 }

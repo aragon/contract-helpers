@@ -1,7 +1,7 @@
 {
-  "name": "@aragon/truffle",
+  "name": "@aragon/truffle-config-v5",
   "version": "0.0.1",
-  "description": "Aragon default truffle configuration file",
+  "description": "Aragon truffle configuration file v5",
   "main": "",
   "scripts": {
     "test": ""
