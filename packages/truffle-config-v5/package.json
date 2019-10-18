@@ -4,7 +4,7 @@
   "description": "Aragon truffle configuration file v5",
   "main": "",
   "scripts": {
-    "test": ""
+    "test": "echo \"No tests\""
   },
   "keywords": [
     "aragon",
