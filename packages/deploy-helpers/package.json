@@ -1,0 +1,19 @@
+{
+  "name": "@aragon/contract-helpers-deploy",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"No tests\""
+  },
+  "keywords": [
+    "aragon",
+    "ethereum"
+  ],
+  "author": "Aragon Association <legal@aragon.org>",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "truffle-flattener": "^1.2.9"
+  }
+}
