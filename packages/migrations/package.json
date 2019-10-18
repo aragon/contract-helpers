@@ -1,6 +1,6 @@
 {
-  "name": "@aragon/apps-shared-migrations",
-  "version": "1.0.0",
+  "name": "@aragon/contract-helpers-migrations",
+  "version": "0.0.1",
   "description": "",
   "scripts": {
     "test": "echo \"No tests\""

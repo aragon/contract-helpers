@@ -1,6 +1,6 @@
 {
-  "name": "@aragon/test-helpers",
-  "version": "2.0.0",
+  "name": "@aragon/contract-helpers-test",
+  "version": "0.0.1",
   "author": "Aragon Assocation <legal@aragon.org>",
   "license": "AGPL-3.0-or-later",
   "files": [
@@ -13,6 +13,8 @@
     "solidity-coverage": "^0.6.2"
   },
   "devDependencies": {
-    "ethereumjs-abi": "^0.6.4"
+    "ethereumjs-abi": "^0.6.4",    
+    "web3-eth-abi": "^1.2.1",
+    "web3-utils": "^1.2.1"
   }
 }

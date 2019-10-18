@@ -1,8 +1,7 @@
 const homedir = require('os').homedir
 const path = require('path')
 
-const HDWalletProvider = require('truffle-hdwallet-provider')
-const HDWalletProviderPrivkey = require('truffle-hdwallet-provider-privkey')
+const HDWalletProvider = require('@truffle/hdwallet-provider')
 
 const DEFAULT_MNEMONIC =
   'explain tackle mirror kit van hammer degree position ginger unfair soup bonus'
@@ -36,7 +35,7 @@ const providerForNetwork = network => () => {
     return new HDWalletProvider(mnemonic(), rpc)
   }
 
-  return new HDWalletProviderPrivkey(keys, rpc)
+  return new HDWalletProvider(keys, rpc)
 }
 
 const mochaGasSettings = {
@@ -58,23 +57,15 @@ module.exports = {
       gas: 6.9e6,
       gasPrice: 15000000001,
     },
-    devnet: {
-      network_id: 16,
-      host: 'localhost',
-      port: 8535,
-      gas: 6.9e6,
-      gasPrice: 15000000001,
-    },
     mainnet: {
       network_id: 1,
       provider: providerForNetwork('mainnet'),
       gas: 7.9e6,
-      gasPrice: 3000000001,
     },
     ropsten: {
       network_id: 3,
       provider: providerForNetwork('ropsten'),
-      gas: 4.712e6,
+      gas: 7.9e6,
     },
     rinkeby: {
       network_id: 4,
@@ -94,20 +85,15 @@ module.exports = {
       gas: 0xffffffffff,
       gasPrice: 0x01,
     },
-    development: {
-      host: 'localhost',
-      network_id: '*',
-      port: 8545,
-      gas: 6.9e6,
-      gasPrice: 15000000001,
-    },
   },
   build: {},
   mocha,
   solc: {
     optimizer: {
+      // See the solidity docs for advice about optimization and evmVersion
+      // https://solidity.readthedocs.io/en/v0.5.12/using-the-compiler.html#setting-the-evm-version-to-target
       enabled: true,
-      runs: 10000,
+      runs: 10000,   // Optimize for how many times you intend to run the code
     },
   },
 }
