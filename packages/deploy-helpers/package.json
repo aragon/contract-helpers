@@ -11,7 +11,7 @@
     "ethereum"
   ],
   "author": "Aragon Association <legal@aragon.org>",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "dependencies": {
     "mkdirp": "^0.5.1",
     "truffle-flattener": "^1.2.9"
