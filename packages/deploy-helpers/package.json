@@ -13,6 +13,7 @@
   "author": "Aragon Association <legal@aragon.org>",
   "license": "MIT",
   "dependencies": {
+    "find-up": "^4.0.0",
     "mkdirp": "^0.5.1",
     "truffle-flattener": "^1.2.9"
   }
