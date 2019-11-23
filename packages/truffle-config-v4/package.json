@@ -2,7 +2,7 @@
   "name": "@aragon/truffle-config-v4",
   "version": "1.0.0",
   "description": "Aragon truffle configuration file v4",
-  "main": "",
+  "main": "truffle-config.js",
   "scripts": {
     "test": "echo \"No tests\""
   },
