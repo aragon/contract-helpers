@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo "Extracting ABIs"
+
+# AragonOS
+mkdir -p os/abi
+mkdir -p os/artifacts
+
+cp -R node_modules/@aragon/os/abi/. os/abi
+cp -R node_modules/@aragon/os/build/contracts/. os/artifacts
+
+# AragonID
+mkdir -p id/abi
+mkdir -p id/artifacts
+
+cp -R node_modules/@aragon/id/abi/. id/abi
+cp -R node_modules/@aragon/id/build/contracts/. id/artifacts
