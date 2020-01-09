@@ -1,5 +1,5 @@
 {
-  "name": "@aragon/contract-helpers-deploy",
+  "name": "@aragon/contract-deploy-helpers",
   "version": "0.0.1",
   "description": "",
   "main": "",
@@ -13,6 +13,7 @@
   "author": "Aragon Association <legal@aragon.org>",
   "license": "MIT",
   "dependencies": {
+    "find-up": "^4.0.0",
     "mkdirp": "^0.5.1",
     "truffle-flattener": "^1.2.9"
   }
