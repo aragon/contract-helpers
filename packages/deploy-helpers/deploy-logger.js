@@ -18,12 +18,10 @@ const getTruffleConfig = () => {
       const truffleConfig = require(truffleConfigPath)
       return truffleConfig
     }
-    const truffleConfig = require('@aragon/truffle-config-v4')
-    return truffleConfig
   } catch (err) {
-    console.log(err)
-    return undefined
+    throw new Error(err)
   }
+  throw new Error(`Didn't found a truffle configuration file. You should add it to your proyect or provide one using the "truffleConfig" argument`)
 }
 
 module.exports = async (
@@ -35,6 +33,7 @@ module.exports = async (
     output,
   } = {}
 ) => {
+
   const {
     contractName,
     sourcePath,
