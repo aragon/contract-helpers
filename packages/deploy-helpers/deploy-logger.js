@@ -21,7 +21,7 @@ const getTruffleConfig = () => {
   } catch (err) {
     throw new Error(err)
   }
-  throw new Error(`Didn't found a truffle configuration file. You should add it to your proyect or provide one using the "truffleConfig" argument`)
+  throw new Error(`Didn't find a truffle configuration file. You should add it to your project or provide one using the "truffleConfig" argument`)
 }
 
 module.exports = async (
