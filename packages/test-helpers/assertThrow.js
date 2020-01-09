@@ -33,7 +33,8 @@ module.exports = {
     const error = await assertThrows(blockOrPromise, REVERT_CODE, reason)
     const errorPrefix = `${THROW_ERROR_PREFIX} ${REVERT_CODE}`
     
-    if (error.message.includes(errorPrefix)) {
+    // Truffle v5 provides `error.reason`, but v4 does not.
+    if (!error.reason && error.message.includes(errorPrefix)) {
       error.reason = error.message.replace(errorPrefix, '')
       // Truffle 5 sometimes add an extra ' -- Reason given: reason.' to the error message 🤷
       error.reason = error.reason.replace(` -- Reason given: ${reason}.`, '').trim()
