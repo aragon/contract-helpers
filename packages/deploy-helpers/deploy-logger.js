@@ -8,12 +8,12 @@ const FLATTEN_DIR = './flattened_contracts'
 
 const getTruffleConfig = () => {
   try {
-    let truffleConfigPath = findUp.sync('truffle.js')
+    let truffleConfigPath = findUp.sync('truffle-config.js')
     if (fs.existsSync(truffleConfigPath)) {
       const truffleConfig = require(truffleConfigPath)
       return truffleConfig
     }
-    truffleConfigPath = findUp.sync('truffle-config.js')
+    truffleConfigPath = findUp.sync('truffle.js')
     if (fs.existsSync(truffleConfigPath)) {
       const truffleConfig = require(truffleConfigPath)
       return truffleConfig
