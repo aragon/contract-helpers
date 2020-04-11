@@ -2,12 +2,9 @@
 
 ## Structure
 
-This is a monorepo with a set of helpers to develop Aragon smart contracts.
+Monorepo with a set of helpers to develop Aragon smart contracts.
 
 Contains the following packages:
 
-- **[Migrations](packages/migrations)**: Modified truffle migration file. See [truffle migrations](https://truffleframework.com/docs/truffle/getting-started/running-migrations)
 - **[Deploy Helpers](packages/deploy-helpers)**: Tools to deploy smart contracts on the Aragon framework
 - **[Test Helpers](packages/test-helpers)**: Tools to improve test experience of smart contracts on the Aragon framework
-- **[Truffle config v4](packages/truffle-config-v4)**: Default truffle (v4) configuration file used across Aragon smart contracts
-- **[Truffle config v5](packages/truffle-config-v5)**: Default truffle (v5) configuration file used across Aragon smart contracts

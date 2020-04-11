@@ -1,5 +1,6 @@
-const { getEventAt, getEvents } = require('./events')
 const { isAddress, isBN, toChecksumAddress } = require('web3-utils')
+const { getEventAt, getEvents } = require('../lib/events')
+
 
 const assertEvent = (receipt, eventName, expectedArgs = {}, index = 0) => {
   const event = getEventAt(receipt, eventName, index)

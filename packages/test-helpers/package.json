@@ -1,20 +1,23 @@
 {
-  "name": "@aragon/contract-helpers-test",
-  "version": "0.0.2",
+  "name": "@aragon/test-helpers",
+  "version": "2.1.0",
   "author": "Aragon Assocation <legal@aragon.org>",
   "license": "MIT",
   "files": [
     "*.js",
     "*.sh",
-    "/contracts"
+    "/asserts",
+    "/contracts",
+    "/lib"
   ],
   "peerDependencies": {
-    "ganache-cli": "^6.0.0",
-    "solidity-coverage": "^0.6.2"
+    "ganache-cli": "^6.9.1",
+    "solidity-coverage": "^0.7.4"
   },
   "dependencies": {
+    "eth-ens-namehash": "^2.0.8",
     "ethereumjs-abi": "^0.6.4",
-    "web3-eth-abi": "^1.2.1",
-    "web3-utils": "^1.2.1"
+    "web3-eth-abi": "^1.2.6",
+    "web3-utils": "^1.2.6"
   }
 }
