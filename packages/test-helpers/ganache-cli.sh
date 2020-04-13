@@ -39,9 +39,9 @@ start_ganache() {
   rpc_pid=$!
   echo "Waiting for ganache to launch on port "$PORT"..."
 
-    while ! rpc_running; do
-      sleep 0.1 # wait for 1/10 of the second before check again
-    done
+  while ! rpc_running; do
+    sleep 0.1 # wait for 1/10 of the second before check again
+  done
 
   echo "Running ganache-cli with pid ${rpc_pid} in port ${PORT}"
 }
@@ -53,6 +53,6 @@ if [ "$SOLIDITY_COVERAGE" = true ]; then
   node_modules/.bin/buidler coverage --network coverage "$@"
 else
   setup_testing_variables
-      start_ganache
+  start_ganache
   node_modules/.bin/buidler test "$@"
 fi

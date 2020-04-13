@@ -12,7 +12,8 @@
   ],
   "peerDependencies": {
     "ganache-cli": "^6.9.1",
-    "solidity-coverage": "^0.7.4"
+    "solidity-coverage": "^0.7.4",
+    "web3": "^1.0.0"
   },
   "dependencies": {
     "eth-ens-namehash": "^2.0.8",

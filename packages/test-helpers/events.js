@@ -8,8 +8,10 @@ const getEventArgument = (receipt, event, arg, index = 0) =>
   getEventAt(receipt, event, index).args[arg]
 const getNewProxyAddress = receipt =>
   getEventArgument(receipt, 'NewAppProxy', 'proxy')
+  const getNewDaoAddress = receipt =>
+  getEventArgument(receipt, 'DeployDAO', 'dao')
 
-const decodeEventsOfType = ( receipt, contractAbi, eventName) => {
+const decodeEventsOfType = (receipt, contractAbi, eventName) => {
   const eventAbi = contractAbi.filter(abi => abi.name === eventName && abi.type === 'event')[0]
   const eventSignature = abi.encodeEventSignature(eventAbi)
   const eventLogs = receipt.rawLogs.filter(l => l.topics[0] === eventSignature)
@@ -32,5 +34,6 @@ module.exports = {
   getEventAt,
   getEventArgument,
   getNewProxyAddress,
+  getNewDaoAddress,
   decodeEventsOfType,
 }
