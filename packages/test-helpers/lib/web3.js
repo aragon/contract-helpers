@@ -1,5 +1,4 @@
-module.exports = web3 => {
-
+module.exports = (web3) => {
   const GETH_NODE_ID = 'Geth'
   const GANACHE_NODE_ID = 'TestRPC'
 
@@ -11,32 +10,32 @@ module.exports = web3 => {
     await web3.currentProvider.send({
       jsonrpc: '2.0',
       method: 'evm_mine',
-      id: new Date().getTime()
+      id: new Date().getTime(),
     })
     return web3.eth.getBlock('latest').hash
   }
 
-  const advanceBlocks = async blocks => {
+  const advanceBlocks = async (blocks) => {
     for (let i = 0; i < blocks; i++) {
       await advanceBlock()
     }
   }
 
-  const advanceTime = time => {
+  const advanceTime = (time) => {
     return web3.currentProvider.sendAsync({
       jsonrpc: '2.0',
       method: 'evm_increaseTime',
       params: [time],
-      id: new Date().getTime()
+      id: new Date().getTime(),
     })
-   }
+  }
 
-   const advanceTimeAndBlock = async time => {
+  const advanceTimeAndBlock = async (time) => {
     await advanceTime(time)
     await advanceBlock()
     return web3.eth.getBlock('latest')
   }
-  
+
   const advanceTimeAndBlocksBy = async (time, numOfBlocks) => {
     await advanceTime(time)
     while (numOfBlocks !== 0) {
@@ -46,28 +45,33 @@ module.exports = web3 => {
     return web3.eth.getBlock('latest')
   }
 
-  function signatures(contract, exclude, web3, names = false, excludeConstant = false) {
-    const flatten = x => [].concat.apply([], x)
-    const sig = f => `${f.name}(${f.inputs.map(x=>x.type).join(',')})`
+  function signatures(
+    contract,
+    exclude,
+    web3,
+    names = false,
+    excludeConstant = false
+  ) {
+    const flatten = (x) => [].concat.apply([], x)
+    const sig = (f) => `${f.name}(${f.inputs.map((x) => x.type).join(',')})`
 
-    const excludedSigs = flatten(exclude.map(x => x.abi)).map(sig)
+    const excludedSigs = flatten(exclude.map((x) => x.abi)).map(sig)
 
     let signatures = contract.abi
-      .filter(x => x.type == 'function')
-      .filter(s => !excludeConstant || !s.constant)
+      .filter((x) => x.type == 'function')
+      .filter((s) => !excludeConstant || !s.constant)
       .map(sig)
-      .filter(s => excludedSigs.indexOf(s) < 0)
+      .filter((s) => excludedSigs.indexOf(s) < 0)
 
-     let bs = signatures.map(s => web3.sha3(s).slice(0, 10)).sort()
-     if (names)
-        return bs.map((b, i) => ({ name: signatures[i], bytes: b }))
+    let bs = signatures.map((s) => web3.sha3(s).slice(0, 10)).sort()
+    if (names) return bs.map((b, i) => ({ name: signatures[i], bytes: b }))
 
-     return bs
+    return bs
   }
 
   async function getSignatureFields(payload, address) {
     const signedPayload = await web3.eth.sign(address, payload)
-    const adding0x = x => '0x'.concat(x)
+    const adding0x = (x) => '0x'.concat(x)
     return {
       r: adding0x(signedPayload.substr(2, 64)),
       s: adding0x(signedPayload.substr(66, 64)),
@@ -125,6 +129,6 @@ module.exports = web3 => {
     getBlockNumber,
     getBlock,
     sendTransaction,
-    getTransaction
+    getTransaction,
   }
 }

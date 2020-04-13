@@ -3,6 +3,9 @@
   "version": "2.1.0",
   "author": "Aragon Assocation <legal@aragon.org>",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint --fix . && echo 'Lint complete.'"
+  },
   "files": [
     "*.js",
     "*.sh",

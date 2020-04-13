@@ -1,6 +1,6 @@
 const { BN } = require('web3-utils')
 
-const bn = x => new BN(x)
+const bn = (x) => new BN(x)
 const bigExp = (x, y) => bn(x).mul(bn(10).pow(bn(y)))
 const maxUint = (e) => bn(2).pow(bn(e)).sub(bn(1))
 
@@ -15,5 +15,5 @@ module.exports = {
   ONE,
   MAX_UINT64,
   MAX_UINT192,
-  MAX_UINT256
+  MAX_UINT256,
 }
