@@ -1,10 +1,10 @@
 const abi = require('ethereumjs-abi')
 const { bn } = require('./lib/numbers')
 
-module.exports = {
-  EMPTY_SCRIPT = '0x00000001',
+const createExecutorId = (id) => `0x${String(id).padStart(8, '0')}`
 
-  createExecutorId: id => `0x${String(id).padStart(8, '0')}`,
+module.exports = {
+  EMPTY_SCRIPT: '0x00000001',
 
   // Encodes an array of actions ({ to: address, calldata: bytes }) into the EVM call script format
   // Sets spec id and concatenates per call
@@ -25,9 +25,8 @@ module.exports = {
   // Set role such that the Oracle canPerform() function is used to determine the permission
   permissionParamEqOracle: (oracleAddress) => {
     const argId = '0xCB' // arg 203 - Oracle ID
-    const op = '01'      // equal
+    const op = '01' // equal
     const value = oracleAddress.slice(2).padStart(60, 0) // 60 as params are uint240
     return bn(`${argId}${op}${value}`)
-  }
-
+  },
 }
