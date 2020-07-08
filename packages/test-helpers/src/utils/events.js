@@ -9,7 +9,7 @@ const getEventArgument = (receipt, event, arg, index = 0) => getEventAt(receipt,
 
 const getNewProxyAddress = receipt => getEventArgument(receipt, 'NewAppProxy', 'proxy')
 
-const decodeEvents = ( receipt, contractAbi, eventName) => {
+const decodeEvents = (receipt, contractAbi, eventName) => {
   const eventAbi = contractAbi.filter(abi => abi.name === eventName && abi.type === 'event')[0]
   const eventSignature = abi.encodeEventSignature(eventAbi)
   const eventLogs = receipt.rawLogs.filter(l => l.topics[0] === eventSignature)
