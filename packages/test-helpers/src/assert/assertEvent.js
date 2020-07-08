@@ -1,5 +1,6 @@
-const { getEventAt, getEvents } = require('./events')
-const { isAddress, isBN, toChecksumAddress } = require('web3-utils')
+const { isAddress } = require('web3-utils')
+const { isBigNumber } = require('../utils/numbers')
+const { getEventAt, getEvents } = require('../utils/events')
 
 const assertEvent = (receipt, eventName, expectedArgs = {}, index = 0) => {
   const event = getEventAt(receipt, eventName, index)
@@ -8,12 +9,13 @@ const assertEvent = (receipt, eventName, expectedArgs = {}, index = 0) => {
 
   for (const arg of Object.keys(expectedArgs)) {
     let foundArg = event.args[arg]
-    if (isBN(foundArg)) foundArg = foundArg.toString()
-    if (isAddress(foundArg)) foundArg = toChecksumAddress(foundArg)
+    if (isBigNumber(foundArg)) foundArg = foundArg.toString()
+    else if (isAddress(foundArg)) foundArg = foundArg.toLowerCase()
 
     let expectedArg = expectedArgs[arg]
-    if (isBN(expectedArg)) expectedArg = expectedArg.toString()
-    if (isAddress(foundArg)) expectedArg = toChecksumAddress(expectedArg)
+    if (isBigNumber(expectedArg)) expectedArg = expectedArg.toString()
+    else if (isAddress(expectedArg)) expectedArg = expectedArg.toLowerCase()
+    else if (expectedArg && expectedArg.address) expectedArg = expectedArg.address.toLowerCase()
 
     assert.equal(foundArg, expectedArg, `${eventName} event ${arg} value does not match`)
   }
