@@ -2,10 +2,7 @@ const { BN } = require('web3-utils')
 
 const bn = x => new BN(x)
 const bigExp = (x, y) => bn(x).mul(bn(10).pow(bn(y)))
-const maxUint = e =>
-  bn(2)
-    .pow(bn(e))
-    .sub(bn(1))
+const maxUint = e => bn(2).pow(bn(e)).sub(bn(1))
 
 const ONE = bigExp(1, 18)
 const MAX_UINT64 = maxUint(64)
