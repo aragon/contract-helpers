@@ -1,6 +1,7 @@
 const { BN } = require('web3-utils')
 
 const bn = x => new BN(x)
+const pct = x => bigExp(x, 16)
 const bigExp = (x, y) => bn(x).mul(bn(10).pow(bn(y)))
 const maxUint = e => bn(2).pow(bn(e)).sub(bn(1))
 const isBigNumber = x => x instanceof BN || (x && x.constructor && x.constructor.name === BN.name)
@@ -12,6 +13,7 @@ const MAX_UINT256 = maxUint(256)
 
 module.exports = {
   bn,
+  pct,
   bigExp,
   isBigNumber,
   ONE,
