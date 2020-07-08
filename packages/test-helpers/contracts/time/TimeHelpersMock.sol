@@ -1,59 +1,31 @@
 pragma solidity ^0.4.24;
 
+import "./ClockMock.sol";
 import "@aragon/os/contracts/common/TimeHelpers.sol";
-import "@aragon/os/contracts/lib/math/SafeMath.sol";
-import "@aragon/os/contracts/lib/math/SafeMath64.sol";
 
 
 contract TimeHelpersMock is TimeHelpers {
-    using SafeMath for uint256;
-    using SafeMath64 for uint64;
-
-    uint256 mockedTimestamp;
-    uint256 mockedBlockNumber;
+    ClockMock public clockMock;
 
     /**
-    * @dev Sets a mocked timestamp value, used only for testing purposes
+    * @dev Set clock mock instance
+    *      Allows to avoid changing constructors to have this time mocked functionality
     */
-    function mockSetTimestamp(uint256 _timestamp) public {
-        mockedTimestamp = _timestamp;
-    }
-
-    /**
-    * @dev Increases the mocked timestamp value, used only for testing purposes
-    */
-    function mockIncreaseTime(uint256 _seconds) public {
-        if (mockedTimestamp != 0) mockedTimestamp = mockedTimestamp.add(_seconds);
-        else mockedTimestamp = block.timestamp.add(_seconds);
-    }
-
-    /**
-    * @dev Decreases the mocked timestamp value, used only for testing purposes
-    */
-    function mockDecreaseTime(uint256 _seconds) public {
-        if (mockedTimestamp != 0) mockedTimestamp = mockedTimestamp.sub(_seconds);
-        else mockedTimestamp = block.timestamp.sub(_seconds);
-    }
-
-    /**
-    * @dev Advances the mocked block number value, used only for testing purposes
-    */
-    function mockAdvanceBlocks(uint256 _number) public {
-        if (mockedBlockNumber != 0) mockedBlockNumber = mockedBlockNumber.add(_number);
-        else mockedBlockNumber = block.number.add(_number);
+    function setClockMock(ClockMock _clockMock) external {
+        clockMock = _clockMock;
     }
 
     /**
     * @dev Returns the mocked timestamp value
     */
-    function getTimestampPublic() public view returns (uint64) {
-        return getTimestamp64();
+    function getTimestampPublic() external view returns (uint256) {
+        return getTimestamp();
     }
 
     /**
     * @dev Returns the mocked block number value
     */
-    function getBlockNumberPublic() public view returns (uint256) {
+    function getBlockNumberPublic() external view returns (uint256) {
         return getBlockNumber();
     }
 
@@ -61,7 +33,7 @@ contract TimeHelpersMock is TimeHelpers {
     * @dev Returns the mocked timestamp if it was set, or current `block.timestamp`
     */
     function getTimestamp() internal view returns (uint256) {
-        if (mockedTimestamp != 0) return mockedTimestamp;
+        if (clockMock != ClockMock(0)) return clockMock.getTimestampPublic();
         return super.getTimestamp();
     }
 
@@ -69,7 +41,7 @@ contract TimeHelpersMock is TimeHelpers {
     * @dev Returns the mocked block number if it was set, or current `block.number`
     */
     function getBlockNumber() internal view returns (uint256) {
-        if (mockedBlockNumber != 0) return mockedBlockNumber;
+        if (clockMock != ClockMock(0)) return clockMock.getBlockNumberPublic();
         return super.getBlockNumber();
     }
 }

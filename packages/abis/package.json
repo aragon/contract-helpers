@@ -1,24 +1,20 @@
 {
-  "name": "@aragon/abis",
-  "version": "1.1.0",
-  "description": "Package to expose Aragon ABIs",
-  "main": "index.js",
-  "scripts": {
-    "prepublishOnly": "scripts/extract",
-    "extract": "scripts/extract"
-  },
-  "files": [
-    "/id",
-    "/os"
-  ],
-  "keywords": [
-    "aragon",
-    "ethereum"
-  ],
-  "author": "Aragon Association <legal@aragon.org>",
-  "license": "MIT",
-  "devDependencies": {
-    "@aragon/id": "^2.1.0",
-    "@aragon/os": "^4.3.0"
-  }
+	"name": "@aragon/abis",
+	"version": "1.1.0",
+	"description": "Package to expose Aragon ABIs",
+	"main": "index.js",
+	"files": [
+		"/id",
+		"/os"
+	],
+	"keywords": [
+		"aragon",
+		"ethereum"
+	],
+	"author": "Aragon Association <legal@aragon.org>",
+	"license": "MIT",
+	"devDependencies": {
+		"@aragon/id": "^2.1.0",
+		"@aragon/os": "^4.3.0"
+	}
 }
