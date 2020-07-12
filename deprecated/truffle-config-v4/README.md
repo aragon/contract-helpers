@@ -1,7 +1,7 @@
 # Truffle v4 configuration file
 
 [![Status](https://img.shields.io/badge/stability-deprecated-lightgrey.svg?style=flat-square)](https://nodejs.org/api/documentation.html#documentation_stability_index)
-[![npm version](https://img.shields.io/npm/v/@aragon/truffle-config-v4.svg?style=flat-square)](https://npmjs.org/package/@aragon/truffle-config-v4)
+[![npm version](https://img.shields.io/npm/v/@aragon/truffle-config-v4.svg?style=flat-square&color=lightgrey)](https://npmjs.org/package/@aragon/truffle-config-v4)
 
 > **⚠️  Deprecation notice**: this package has been deprecated and should not be used any more. For smart contract development, we recommend migrating to [buidler](https://buidler.dev/), or if you still have to use Truffle, to upgrade to v5.
 
