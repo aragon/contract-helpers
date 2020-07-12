@@ -2,7 +2,7 @@
 
 > **⚠️  Note**: for smart contract development, we recommend migrating to [buidler](https://buidler.dev/).
 
-Default Truffle v5 configuration for Aragon smart contract development.
+Base Truffle v5 configuration for Aragon smart contract development.
 
 Comes with:
 

@@ -8,4 +8,4 @@ Contains the following packages:
 
 - **[Deploy Helpers](packages/deploy-helpers)**: Tools to deploy smart contracts on the Aragon framework
 - **[Test Helpers](packages/test-helpers)**: Smart contract test helpers for both generic Solidity and Aragon-related smart contracts
-- **[Truffle v5 config](packages/truffle-config-v5)**: Default Truffle v5 configuration for Aragon smart contract development
+- **[Truffle v5 config](packages/truffle-config-v5)**: Base Truffle v5 configuration for Aragon smart contract development

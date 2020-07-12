@@ -5,7 +5,7 @@
 
 > **⚠️  Deprecation notice**: this package has been deprecated and should not be used any more. For smart contract development, we recommend migrating to [buidler](https://buidler.dev/), or if you still have to use Truffle, to upgrade to v5.
 
-Default Truffle v4 configuration for Aragon smart contract development.
+Base Truffle v4 configuration for Aragon smart contract development.
 
 Comes with:
 
