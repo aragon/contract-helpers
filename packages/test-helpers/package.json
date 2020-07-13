@@ -9,6 +9,7 @@
     "/contracts"
   ],
   "peerDependencies": {
+    "chai": "^4.2.0",
     "ganache-cli": "^6.0.0",
     "solidity-coverage": "^0.6.2"
   },
