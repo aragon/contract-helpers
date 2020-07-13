@@ -8,6 +8,9 @@
     "*.sh",
     "/contracts"
   ],
+  "optionalDependencies": {
+    "@aragon/os": "^4.0.0"
+  },
   "peerDependencies": {
     "chai": "^4.2.0",
     "ganache-cli": "^6.0.0",

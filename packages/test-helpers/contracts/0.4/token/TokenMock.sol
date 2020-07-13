@@ -1,14 +1,12 @@
-// Non-standards compliant token that is missing return values for
-// `transfer()`, `transferFrom()`, and `approve().
 // Modified from https://github.com/OpenZeppelin/openzeppelin-solidity/blob/a9f910d34f0ab33a1ae5e714f69f9596a02b4d91/contracts/token/ERC20/StandardToken.sol
 
-pragma solidity 0.4.24;
+pragma solidity ^0.4.24;
 
-import "@aragon/os/contracts/lib/math/SafeMath.sol";
+import "../internal/InternalSafeMath.sol";
 
 
-contract TokenReturnMissingMock {
-    using SafeMath for uint256;
+contract TokenMock {
+    using InternalSafeMath for uint256;
     mapping (address => uint256) private balances;
     mapping (address => mapping (address => uint256)) private allowed;
     uint256 private totalSupply_;
@@ -36,14 +34,6 @@ contract TokenReturnMissingMock {
     }
 
     /**
-    * @dev Set whether the token is transferable or not
-    * @param _allowTransfer Should token be transferable
-    */
-    function setAllowTransfer(bool _allowTransfer) public {
-        allowTransfer_ = _allowTransfer;
-    }
-
-    /**
     * @dev Function to check the amount of tokens that an owner allowed to a spender.
     * @param _owner address The address which owns the funds.
     * @param _spender address The address which will spend the funds.
@@ -54,11 +44,19 @@ contract TokenReturnMissingMock {
     }
 
     /**
+    * @dev Set whether the token is transferable or not
+    * @param _allowTransfer Should token be transferable
+    */
+    function setAllowTransfer(bool _allowTransfer) public {
+        allowTransfer_ = _allowTransfer;
+    }
+
+    /**
     * @dev Transfer token for a specified address
     * @param _to The address to transfer to.
     * @param _value The amount to be transferred.
     */
-    function transfer(address _to, uint256 _value) public {
+    function transfer(address _to, uint256 _value) public returns (bool) {
         require(allowTransfer_);
         require(_value <= balances[msg.sender]);
         require(_to != address(0));
@@ -66,23 +64,20 @@ contract TokenReturnMissingMock {
         balances[msg.sender] = balances[msg.sender].sub(_value);
         balances[_to] = balances[_to].add(_value);
         emit Transfer(msg.sender, _to, _value);
+        return true;
     }
 
     /**
     * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
-    * Beware that changing an allowance with this method brings the risk that someone may use both the old
-    * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
-    * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
-    * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+    *      Beware that changing an allowance with this method brings the risk that someone may use
+    *      both the old and the new allowance by unfortunate transaction ordering.
     * @param _spender The address which will spend the funds.
     * @param _value The amount of tokens to be spent.
     */
-    function approve(address _spender, uint256 _value) public {
-        // Assume we want to protect for the race condition
-        require(allowed[msg.sender][_spender] == 0);
-
+    function approve(address _spender, uint256 _value) public returns (bool) {
         allowed[msg.sender][_spender] = _value;
         emit Approval(msg.sender, _spender, _value);
+        return true;
     }
 
     /**
@@ -91,7 +86,7 @@ contract TokenReturnMissingMock {
     * @param _to address The address which you want to transfer to
     * @param _value uint256 the amount of tokens to be transferred
     */
-    function transferFrom(address _from, address _to, uint256 _value) public {
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
         require(allowTransfer_);
         require(_value <= balances[_from]);
         require(_value <= allowed[_from][msg.sender]);
@@ -101,5 +96,6 @@ contract TokenReturnMissingMock {
         balances[_to] = balances[_to].add(_value);
         allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
         emit Transfer(_from, _to, _value);
+        return true;
     }
 }
