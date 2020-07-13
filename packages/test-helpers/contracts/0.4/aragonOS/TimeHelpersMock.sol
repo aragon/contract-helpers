@@ -9,20 +9,20 @@ contract TimeHelpersMock is TimeHelpers {
     using SafeMath for uint256;
     using SafeMath64 for uint64;
 
-    uint256 mockedTimestamp;
-    uint256 mockedBlockNumber;
+    uint256 public mockedTimestamp;
+    uint256 public mockedBlockNumber;
 
     /**
     * @dev Sets a mocked timestamp value, used only for testing purposes
     */
-    function mockSetTimestamp(uint256 _timestamp) public {
+    function mockSetTimestamp(uint256 _timestamp) external {
         mockedTimestamp = _timestamp;
     }
 
     /**
     * @dev Increases the mocked timestamp value, used only for testing purposes
     */
-    function mockIncreaseTime(uint256 _seconds) public {
+    function mockIncreaseTime(uint256 _seconds) external {
         if (mockedTimestamp != 0) mockedTimestamp = mockedTimestamp.add(_seconds);
         else mockedTimestamp = block.timestamp.add(_seconds);
     }
@@ -30,7 +30,7 @@ contract TimeHelpersMock is TimeHelpers {
     /**
     * @dev Decreases the mocked timestamp value, used only for testing purposes
     */
-    function mockDecreaseTime(uint256 _seconds) public {
+    function mockDecreaseTime(uint256 _seconds) external {
         if (mockedTimestamp != 0) mockedTimestamp = mockedTimestamp.sub(_seconds);
         else mockedTimestamp = block.timestamp.sub(_seconds);
     }
@@ -38,7 +38,7 @@ contract TimeHelpersMock is TimeHelpers {
     /**
     * @dev Advances the mocked block number value, used only for testing purposes
     */
-    function mockAdvanceBlocks(uint256 _number) public {
+    function mockAdvanceBlocks(uint256 _number) external {
         if (mockedBlockNumber != 0) mockedBlockNumber = mockedBlockNumber.add(_number);
         else mockedBlockNumber = block.number.add(_number);
     }
@@ -46,14 +46,14 @@ contract TimeHelpersMock is TimeHelpers {
     /**
     * @dev Returns the mocked timestamp value
     */
-    function getTimestampPublic() public view returns (uint64) {
+    function getTimestampPublic() external view returns (uint64) {
         return getTimestamp64();
     }
 
     /**
     * @dev Returns the mocked block number value
     */
-    function getBlockNumberPublic() public view returns (uint256) {
+    function getBlockNumberPublic() external view returns (uint256) {
         return getBlockNumber();
     }
 

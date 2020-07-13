@@ -18,9 +18,65 @@ A mock to manipulate aragonOS's `TimeHelpers` construct.
 
 This mock is useful to ensure smart contracts requiring a notion of time can be easily tested on "real" chain implementations like geth or parity, which do not implement "test" APIs such as `evm_increaseTime` or `evm_mine` (and rightly so!).
 
-Most Aragon apps are built by extending the `TimeHelpers` contract, allowing this mock to manipulate the app's internal concept of time.
+Most Aragon apps extend and utilize the `TimeHelpers` contract, allowing this mock to manipulate the app's internal concept of time.
+
+You will usually use this mock by "wrapping" it around your actual app contract, like so:
+
+```solidity
+contract MyApp is AragonApp {
+}
+
+
+// Automatically expose the time-control utilities from TimeHelpersMock into the mock
+contract MyAppMock is MyApp, TimeHelpersMock {
+}
+```
+
+And in your test files:
+
+```js
+// Use the mocked version for testing
+const MyApp = artifacts.require('MyAppMock')
+
+const myApp = await MyApp.new()
+myApp.mockSetTimestamp(...)
+```
 
 There are a number of simple utility methods included in the `TimeHelpersMock` to update, advance, or reverse time, so the best [documentation is the implementation itself](./aragonOS/TimeHelpersMock.sol).
+
+### `SharedTimeHelpersMock`
+
+This is a similar mock to the `TimeHelpersMock`, except it allows you to externally configure a "clock" (a `TimeHelpersMock` instance).
+
+This is useful in situations where you would like multiple contracts to share a single source of mocked time, without having to manipulate each contract's time functions individually.
+
+To use it, you will use it similarly to `TimeHelpersMock`:
+
+```solidity
+contract MyApp is AragonApp {
+}
+
+
+// Automatically expose the time-control utilities from TimeHelpersMock into the mock
+contract MyAppMock is MyApp, SharedTimeHelpersMock {
+}
+```
+
+And in your test files:
+
+```js
+const MyApp = artifacts.require('MyAppMock')
+const TimeHelpersMock = artifacts.require('TimeHelpersMock')
+
+const clock = await TimeHelpersMock.new()
+const myApp = await MyApp.new()
+myApp.setClock(clock.address)
+
+// Update time in myApp
+clock.mockSetTimestamp(...)
+```
+
+Note that all time manipulation now occurs through the shared `TimeHelpersMock` clock instance.
 
 ## Tokens
 
