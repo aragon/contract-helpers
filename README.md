@@ -6,8 +6,8 @@ This is a monorepo containing utilities and helpers for developing smart contrac
 
 Includes the following packages (see their packages for documentation):
 
-- **`@aragon/contract-helpers-test` ([Test helpers](packages/test-helpers))**: Test helpers for both generic Solidity and Aragon-related smart contracts
-- **`@aragon/truffle-config-v5` ([Truffle v5 config](packages/truffle-config-v5))**: Base Truffle v5 configuration for Aragon smart contract development
+- **`@aragon/contract-helpers-test` ([test helpers](packages/test-helpers))**: test helpers for both generic Solidity and Aragon-related smart contracts
+- **`@aragon/truffle-config-v5` ([truffle v5 config](packages/truffle-config-v5))**: base Truffle v5 configuration for Aragon smart contract development
 
 The following packages have yet to be published:
 
