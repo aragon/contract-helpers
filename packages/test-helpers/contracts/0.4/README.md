@@ -2,6 +2,8 @@
 
 ## aragonOS
 
+Requires `@aragon/os <= 4.x` to also be installed.
+
 ### `EtherTokenConstant`
 
 A simple mock to get the "mock" token address of ether for aragonOS and most Aragon app implementations, when the contract supports both ether and a token address.
@@ -103,6 +105,22 @@ A standards compliant ERC-20 token, similar to `TokenMock`, but while `TokenMock
 A **non-compliant** ERC-20 token, which does not return a value on allowed actions.
 
 Useful for testing that a contract correctly handles these non-compliant tokens, of which there are [multiple high-profile ones deployed](https://medium.com/coinmonks/missing-return-value-bug-at-least-130-tokens-affected-d67bf08521ca).
+
+## Misc.
+
+### `ExecutionTarget`
+
+A small mock contract that is meant to be used as the "target" of another action (such as a proxied call).
+
+```solidity
+contract ExecutionTarget {
+    event TargetExecuted(uint256 counter);
+    uint256 public counter;
+    function execute() external;
+}
+```
+
+On each successful call to `execute()`, `counter` will be incremented and `TargetExecuted` will be emitted.
 
 ## Internals
 
