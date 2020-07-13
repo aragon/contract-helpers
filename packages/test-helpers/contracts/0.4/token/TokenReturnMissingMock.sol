@@ -4,7 +4,7 @@
 
 pragma solidity ^0.4.24;
 
-import "../internals/InternalSafeMath.sol";
+import "../internal/InternalSafeMath.sol";
 
 
 contract TokenReturnMissingMock {

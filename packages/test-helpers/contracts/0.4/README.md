@@ -122,8 +122,8 @@ contract ExecutionTarget {
 
 On each successful call to `execute()`, `counter` will be incremented and `TargetExecuted` will be emitted.
 
-## Internals
+## Internal
 
-Contracts in the `internals/` subdirectory are meant to be private to this package and should not be used directly.
+Contracts in the `internal/` subdirectory are meant to be private to this package and should not be used directly.
 
 They have been given prefixed names to avoid causing name clashes with real contracts.
