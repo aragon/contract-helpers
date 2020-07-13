@@ -1,1 +1,7 @@
-module.exports = isValidTxHash = txHash => /^0x([A-Fa-f0-9]{64})$/.test(txHash)
+function isValidTxHash(txHash) {
+  return /^0x([a-f0-9]{64})$/.test(txHash)
+}
+
+module.exports = {
+  isValidTxHash,
+}
