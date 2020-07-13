@@ -1,3 +1,5 @@
+const { assert } = require('chai')
+
 const THROW_ERROR_PREFIX = 'Returned error: VM Exception while processing transaction: revert'
 
 async function assertThrows(blockOrPromise, expectedErrorCode, expectedReason) {
