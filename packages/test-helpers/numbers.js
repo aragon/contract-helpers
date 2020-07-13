@@ -20,6 +20,10 @@ function maxUint(e) {
     .sub(bn(1))
 }
 
+function pct16(x) {
+  return bigExp(x, 16)
+}
+
 const ONE = bigExp(1, 18)
 const MAX_UINT64 = maxUint(64)
 const MAX_UINT192 = maxUint(192)
@@ -29,6 +33,7 @@ module.exports = {
   bn,
   bigExp,
   isBn,
+  pct16,
   MAX_UINT64,
   MAX_UINT192,
   MAX_UINT256,
