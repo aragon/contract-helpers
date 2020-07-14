@@ -3,8 +3,8 @@ const { injectArtifacts } = require('./config/artifacts')
 const { injectWeb3 } = require('./config/web3')
 
 // Utilities
+const addresses = require('./addresses')
 const bytes = require('./bytes')
-const constants = require('./constants')
 const decoding = require('./decoding')
 const events = require('./events')
 const mocha = require('./mocha')
@@ -15,8 +15,8 @@ const time = require('./time')
 module.exports = {
   injectArtifacts,
   injectWeb3,
+  ...addresses,
   ...bytes,
-  ...constants,
   ...decoding,
   ...events,
   ...mocha,
