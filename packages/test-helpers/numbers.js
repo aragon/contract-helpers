@@ -5,9 +5,7 @@ function bn(x) {
 }
 
 function bigExp(x, y) {
-  return bn(x)
-    .mul(bn(10)
-    .pow(bn(y)))
+  return bn(x).mul(bn(10).pow(bn(y)))
 }
 
 function isBn(x) {
@@ -15,9 +13,7 @@ function isBn(x) {
 }
 
 function maxUint(e) {
-  return bn(2)
-    .pow(bn(e))
-    .sub(bn(1))
+  return bn(2).pow(bn(e)).sub(bn(1))
 }
 
 function pct16(x) {
