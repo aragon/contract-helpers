@@ -1,8 +1,6 @@
 const abi = require('web3-eth-abi')
 const { stripBytePrefix } = require('../')
 
-const EMPTY_SCRIPT = '0x00000001'
-
 function createExecutorId(id) {
   return `0x${String(id).padStart(8, '0')}`
 }
@@ -29,7 +27,7 @@ function encodeCallScript(actions, specId = 1) {
 }
 
 module.exports = {
-  EMPTY_SCRIPT,
+  EMPTY_CALLS_SCRIPT: createExecutorId(1),
   createExecutorId,
   encodeCallScript,
 }
