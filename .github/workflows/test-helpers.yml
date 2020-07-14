@@ -1,0 +1,25 @@
+name: CI (test-helpers)
+
+on:
+  push:
+    paths:
+      - 'packages/test-helpers/**'
+
+jobs:
+  defaults:
+    run:
+      working-directory: 'packages/test-helpers'
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: yarn install
+      run: yarn install --frozen-lockfile
+    - name: lint
+      run: yarn run lint
+env:
+  CI: true
