@@ -19,6 +19,7 @@ module.exports = {
   ],
   plugins: ['prettier', 'node', 'promise'],
   rules: {
+    curly: ['error', 'all'],
     'node/no-missing-require': [
       'error',
       {

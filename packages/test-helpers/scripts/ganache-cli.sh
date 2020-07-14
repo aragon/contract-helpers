@@ -64,4 +64,3 @@ else
   start_ganache
   run_tests $@
 fi
-

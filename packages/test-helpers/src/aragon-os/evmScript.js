@@ -1,4 +1,7 @@
 const abi = require('web3-eth-abi')
+const { stripBytePrefix } = require('../')
+
+const EMPTY_SCRIPT = '0x00000001'
 
 function createExecutorId(id) {
   return `0x${String(id).padStart(8, '0')}`
@@ -10,20 +13,23 @@ function createExecutorId(id) {
 // Defaults spec id to 1
 function encodeCallScript(actions, specId = 1) {
   return actions.reduce((script, { to, calldata }) => {
-    const addr = abi.encodeParameter('address', to).slice(2) // Remove leading 0x
+    const addr = abi.encodeParameter('address', to)
 
-    const calldataBytes = calldata.slice(2) // Remove leading 0x
-    const length = abi
-      .encodeParameter('uint256', calldataBytes.length / 2)
-      .slice(2) // Remove leading 0x
+    const calldataBytes = stripBytePrefix(calldata.slice(2))
+    const length = abi.encodeParameter('uint256', calldataBytes.length / 2)
 
-    // Remove 12 first 0s of padding for addr and 28 0s for uint32
-    return script + addr.slice(24) + length.slice(56) + calldataBytes
+    // Remove first 12 bytes of padding for addr and 28 bytes for uint32
+    return (
+      script +
+      stripBytePrefix(addr).slice(24) +
+      stripBytePrefix(length).slice(56) +
+      calldataBytes
+    )
   }, createExecutorId(specId))
 }
 
 module.exports = {
-  EMPTY_SCRIPT: '0x00000001',
+  EMPTY_SCRIPT,
   createExecutorId,
   encodeCallScript,
 }

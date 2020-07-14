@@ -1,7 +1,17 @@
 const { assert } = require('chai')
 const { isAddress, isBN, toChecksumAddress } = require('web3-utils')
 
-const { getEventAt, getEvents } = require('./events')
+const { getEvents, getEventAt } = require('../')
+
+function normalizeArg(arg) {
+  if (isBN(arg)) {
+    return arg.toString()
+  } else if (isAddress(arg)) {
+    return toChecksumAddress(arg)
+  }
+
+  return arg
+}
 
 function assertEvent(receipt, eventName, expectedArgs = {}, index = 0) {
   const event = getEventAt(receipt, eventName, index)
@@ -14,18 +24,13 @@ function assertEvent(receipt, eventName, expectedArgs = {}, index = 0) {
   )
 
   for (const arg of Object.keys(expectedArgs)) {
-    let foundArg = event.args[arg]
-    if (isBN(foundArg)) foundArg = foundArg.toString()
-    else if (isAddress(foundArg)) foundArg = toChecksumAddress(foundArg)
-
-    let expectedArg = expectedArgs[arg]
-    if (isBN(expectedArg)) expectedArg = expectedArg.toString()
-    else if (isAddress(foundArg)) expectedArg = toChecksumAddress(expectedArg)
+    const foundArg = normalizeArg(event.args[arg])
+    const expectedArg = normalizeArg(expectedArgs[arg])
 
     assert.equal(
       foundArg,
       expectedArg,
-      `${eventName} event ${arg} value does not match`
+      `${eventName} event's ${arg} value does not match`
     )
   }
 }
