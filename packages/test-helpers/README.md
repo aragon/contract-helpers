@@ -37,11 +37,71 @@ Furthermore, the package also comes with:
 
 ### Global state
 
+The utilities exposed from the test helpers will automatically detect and bind to an injected Truffle environment (`artifacts` and `web3`).
+
+However, it is possible to override this default binding or inject your own if none exist at the start of a file.
+
+#### `ctx`
+
+Individual utilities containing a trailing `ctx` parameter allow you to override the environment specifically for that single call.
+
+```ts
+type Artifacts = {
+  require(name: string): TruffleContract,
+}
+
+type Context = {
+  artifacts: Artifacts,
+  web3: Web3,
+}
+```
+
+#### `injectArtifacts()`
+
+Inject an `artifacts` object into the global default environment.
+
+Note that all future calls will now reference this new `artifacts` object by default.
+
+#### `injectWeb3()`
+
+Inject a `web3` object into the global default environment.
+
+Note that all future calls will now reference this new `web3` object by default.
+
 ### Generic utilities
+
+#### Constants
+
+The following constants are available, and mostly self-explanatory:
+
+- Ethereum related
+  - `EMPTY_BYTES`
+  - `ZERO_ADDRESS`
+  - `ZERO_BYTES32`
+- Number related
+  - `MAX_UINT64`
+  - `MAX_UINT192`
+  - `MAX_UINT256`
+- Time related
+  - `NOW`: `Date.now()`, *in seconds*
+  - `TOMORROW`: one day ahead of `Date.now()`, *in seconds*
+  - `NEXT_WEEK`: one week ahead of `Date.now()`, *in seconds*
+  - `ONE_DAY`: duration for one day, *in seconds*
+  - `ONE_WEEK`: duration for one week, *in seconds*
 
 ### Custom assertions
 
 ### aragonOS utilities
+
+#### Constants
+
+The following constants are available:
+
+- ACL
+  - `ANY_ENTITY`: address denoting any address has permission
+  - `BURN_MANAGER`: address denoting a permission has been frozen via discarding (burning) its manager
+- EVM Scripts
+  - `EMPTY_CALLS_SCRIPT`: empty CallsScript (with spec id 1)
 
 ### aragonOS assertions
 
