@@ -1,5 +1,4 @@
 const { assert } = require('chai')
-const { bn } = require('../')
 
 const assertBn = (actual, expected, errorMsg) => {
   assert.equal(
