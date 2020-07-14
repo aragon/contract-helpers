@@ -4,10 +4,11 @@
   "author": "Aragon Assocation <legal@aragon.org>",
   "license": "MIT",
   "files": [
-    "*.js",
     "/contracts",
-    "/scripts"
+    "/scripts",
+    "/src"
   ],
+  "main": "src/index.js",
   "optionalDependencies": {
     "@aragon/os": "^4.0.0"
   },
