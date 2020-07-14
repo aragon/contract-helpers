@@ -8,6 +8,9 @@ function normalizeArg(arg) {
     return arg.toString()
   } else if (isAddress(arg)) {
     return toChecksumAddress(arg)
+  } else if (arg && arg.address) {
+    // Web3.js or Truffle contract instance
+    return toChecksumAddress(arg.address)
   }
 
   return arg
