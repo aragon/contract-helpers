@@ -8,15 +8,13 @@ function createExecutorId(id) {
 // Sets spec id and concatenates per call
 //   [ 20 bytes (address) ] + [ 4 bytes (uint32: calldata length) ] + [ calldataLength bytes (payload) ]
 // Defaults spec id to 1
-function encodeCallScript (actions, specId = 1) {
+function encodeCallScript(actions, specId = 1) {
   return actions.reduce((script, { to, calldata }) => {
-    const addr = abi
-      .encodeParameter('address', to)
-      .slice(2) // Remove leading 0x
+    const addr = abi.encodeParameter('address', to).slice(2) // Remove leading 0x
 
     const calldataBytes = calldata.slice(2) // Remove leading 0x
     const length = abi
-      .encodeParameter('uint256', (calldataBytes.length) / 2)
+      .encodeParameter('uint256', calldataBytes.length / 2)
       .slice(2) // Remove leading 0x
 
     // Remove 12 first 0s of padding for addr and 28 0s for uint32
@@ -27,5 +25,5 @@ function encodeCallScript (actions, specId = 1) {
 module.exports = {
   EMPTY_SCRIPT: '0x00000001',
   createExecutorId,
-  encodeCallScript
+  encodeCallScript,
 }
