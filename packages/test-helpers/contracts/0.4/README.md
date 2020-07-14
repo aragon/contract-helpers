@@ -1,6 +1,6 @@
 # Solc 0.4 contract mocks
 
-Usage: `import "@aragon/test-helpers/contracts/0.4/<contract>";`
+Usage: `import "@aragon/contract-helpers-test/contracts/0.4/<contract>";`
 
 - [`aragonOS/`](#aragonos)
   - [`EtherTokenConstant`](#ethertokenconstant)
@@ -96,7 +96,7 @@ Note that all time manipulation now occurs through the shared `TimeHelpersMock` 
 
 ## Tokens
 
-Imported via `@aragon/test-helpers/contracts/0.4/token/`.
+Imported via `@aragon/contract-helpers-test/contracts/0.4/token/`.
 
 ### `TokenMock`
 

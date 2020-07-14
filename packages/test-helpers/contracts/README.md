@@ -30,8 +30,8 @@ For usage with Truffle, you will need to do something like:
 // contracts/test/TestImport
 pragma solidity ^0.4.24;
 
-import "@aragon/test-helpers/contracts/0.4/aragonOS/TimeHelpersMock.sol";
-import "@aragon/test-helpers/contracts/0.4/token/TokenMock.sol";
+import "@aragon/contract-helpers-test/contracts/0.4/aragonOS/TimeHelpersMock.sol";
+import "@aragon/contract-helpers-test/contracts/0.4/token/TokenMock.sol";
 
 
 contract TestImport {
