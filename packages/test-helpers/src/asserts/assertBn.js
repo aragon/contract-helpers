@@ -3,8 +3,8 @@ const { bn } = require('../')
 
 const assertBn = (actual, expected, errorMsg) => {
   assert.equal(
-    bn(actual).toString(),
-    bn(expected).toString(),
+    actual.toString(),
+    expected.toString(),
     `${errorMsg} expected ${expected.toString()} to equal ${actual.toString()}`
   )
 }
