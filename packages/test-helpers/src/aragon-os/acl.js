@@ -1,5 +1,7 @@
 const { bn } = require('../')
-const { ANY_ENTITY } = require('./')
+
+const ANY_ENTITY = '0xffffffffffffffffffffffffffffffffffffffff'
+const BURN_MANAGER = '0x0000000000000000000000000000000000000001'
 
 // Set role such that the ACLOracle's canPerform() function is used to determine the permission
 function createEqOraclePermissionParam(oracleAddress) {
@@ -22,6 +24,8 @@ async function setOpenPermission(acl, appAddress, role, rootAddress) {
 }
 
 module.exports = {
+  ANY_ENTITY,
+  BURN_MANAGER,
   createEqOraclePermissionParam,
   setOpenPermission,
 }
