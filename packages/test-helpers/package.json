@@ -5,8 +5,8 @@
   "license": "MIT",
   "files": [
     "*.js",
-    "*.sh",
-    "/contracts"
+    "/contracts",
+    "/scripts"
   ],
   "optionalDependencies": {
     "@aragon/os": "^4.0.0"
