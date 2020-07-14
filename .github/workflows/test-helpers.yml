@@ -3,12 +3,13 @@ name: CI (test-helpers)
 on:
   push:
     paths:
-      - 'packages/test-helpers/**'
+    - 'packages/test-helpers/**'
+
+defaults:
+  run:
+    working-directory: 'packages/test-helpers'
 
 jobs:
-  defaults:
-    run:
-      working-directory: 'packages/test-helpers'
   deploy:
     runs-on: ubuntu-latest
     steps:
