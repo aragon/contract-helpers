@@ -1,13 +1,19 @@
-function getEvents({ logs = [] }, eventName) {
+const { decodeEvents } = require('./')
+
+function getEvents(receipt, eventName, { decodeForAbi } = {}) {
+  const logs = decodeForAbi
+    ? decodeEvents(receipt, decodeForAbi, eventName)
+    : receipt.logs
+
   return logs.filter((l) => l.event === eventName)
 }
 
-function getEventAt(receipt, eventName, index = 0) {
-  return getEvents(receipt, eventName)[index]
+function getEventAt(receipt, eventName, { index = 0, ...options } = {}) {
+  return getEvents(receipt, eventName, options)[index]
 }
 
-function getEventArgument(receipt, eventName, arg, index = 0) {
-  return getEventAt(receipt, eventName, index).args[arg]
+function getEventArgument(receipt, eventName, arg, options) {
+  return getEventAt(receipt, eventName, options).args[arg]
 }
 
 module.exports = {

@@ -16,8 +16,12 @@ function normalizeArg(arg) {
   return arg
 }
 
-function assertEvent(receipt, eventName, expectedArgs = {}, index = 0) {
-  const event = getEventAt(receipt, eventName, index)
+function assertEvent(
+  receipt,
+  eventName,
+  { index = 0, expectedArgs = {}, ...options } = {}
+) {
+  const event = getEventAt(receipt, eventName, { index, ...options })
 
   assert(
     typeof event === 'object',
@@ -38,8 +42,12 @@ function assertEvent(receipt, eventName, expectedArgs = {}, index = 0) {
   }
 }
 
-function assertAmountOfEvents(receipt, eventName, expectedAmount = 1) {
-  const events = getEvents(receipt, eventName)
+function assertAmountOfEvents(
+  receipt,
+  eventName,
+  { expectedAmount = 1, ...options } = {}
+) {
+  const events = getEvents(receipt, eventName, options)
   assert.equal(
     events.length,
     expectedAmount,
