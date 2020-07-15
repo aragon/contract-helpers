@@ -3,18 +3,21 @@
   "version": "0.0.3",
   "author": "Aragon Assocation <legal@aragon.org>",
   "license": "MIT",
+  "engines": {
+    "node": ">= 10.0.0"
+  },
   "files": [
-    "*.js",
-    "*.sh",
-    "/contracts"
+    "/contracts",
+    "/scripts",
+    "/src"
   ],
+  "main": "src/index.js",
   "optionalDependencies": {
     "@aragon/os": "^4.0.0"
   },
   "peerDependencies": {
     "chai": "^4.2.0",
-    "ganache-cli": "^6.0.0",
-    "solidity-coverage": "^0.6.2"
+    "web3": "^1.0.0"
   },
   "dependencies": {
     "web3-eth-abi": "1.2.5",

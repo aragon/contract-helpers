@@ -7,7 +7,7 @@ set -o errexit
 trap cleanup EXIT
 
 cleanup() {
-  # Kill the RPC instance that we started (if we started one and if it's still running).
+  # Kill the ganache instance that we started (if we started one and if it's still running).
   if [ -n "$rpc_pid" ] && ps -p $rpc_pid > /dev/null; then
     kill -9 $rpc_pid
   fi
