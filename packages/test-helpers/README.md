@@ -47,7 +47,7 @@ Individual utilities containing a trailing `ctx` parameter allow you to override
 
 ```ts
 type Artifacts = {
-  require(name: string): TruffleContract,
+  require: (name: string) => TruffleContract,
 }
 
 type Context = {
