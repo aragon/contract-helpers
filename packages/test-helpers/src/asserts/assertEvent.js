@@ -1,7 +1,7 @@
 const { assert } = require('chai')
 const { isAddress, isBN, toChecksumAddress } = require('web3-utils')
 
-const { getEvents, getEventAt } = require('../')
+const { getEvents, getEventAt } = require('../events')
 
 function normalizeArg(arg) {
   if (isBN(arg)) {

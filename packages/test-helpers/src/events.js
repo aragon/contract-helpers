@@ -1,4 +1,4 @@
-const { decodeEvents } = require('./')
+const { decodeEvents } = require('./decoding')
 
 function getEvents(receipt, eventName, { decodeForAbi } = {}) {
   const logs = decodeForAbi

@@ -1,5 +1,6 @@
 const { assert } = require('chai')
-const { decodeErrorReasonFromTx, isGeth } = require('../')
+const { isGeth } = require('../node')
+const { decodeErrorReasonFromTx } = require('../decoding')
 
 const THROW_ERROR_PREFIX =
   'Returned error: VM Exception while processing transaction: revert'

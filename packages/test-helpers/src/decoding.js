@@ -2,7 +2,7 @@ const abi = require('web3-eth-abi')
 const { isAddress } = require('web3-utils')
 
 const { getWeb3 } = require('./config')
-const { stripBytePrefix } = require('./')
+const { stripBytePrefix } = require('./bytes')
 
 function decodeErrorReason(returnValue) {
   returnValue = stripBytePrefix(returnValue)

@@ -1,4 +1,4 @@
-const { decodeEvents } = require('../')
+const { decodeEvents } = require('../decoding')
 const { getArtifacts } = require('../config')
 
 function getInstalledApps(receipt, appIds, ctx) {

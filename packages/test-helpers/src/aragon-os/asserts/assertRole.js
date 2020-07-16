@@ -1,7 +1,7 @@
 const { assert } = require('chai')
 const { toChecksumAddress } = require('web3-utils')
 
-const { ZERO_ADDRESS } = require('../../')
+const { ZERO_ADDRESS } = require('../../addresses')
 
 async function assertRole(acl, app, manager, roleName, grantee = manager) {
   const appName = app.constructor.contractName

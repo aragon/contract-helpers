@@ -1,4 +1,4 @@
-const { bn } = require('../')
+const { bn } = require('../numbers')
 
 const ANY_ENTITY = '0xffffffffffffffffffffffffffffffffffffffff'
 const BURN_MANAGER = '0x0000000000000000000000000000000000000001'
