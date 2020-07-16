@@ -16,7 +16,7 @@ async function assertThrows(
       ? await blockOrPromise()
       : await blockOrPromise
   } catch (error) {
-    if (isGeth(ctx)) {
+    if (await isGeth(ctx)) {
       // With geth, we are only provided the transaction receipt and have to decode the failure
       // ourselves.
       const status = error.receipt.status
