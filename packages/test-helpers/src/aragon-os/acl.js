@@ -1,7 +1,7 @@
 const { bn } = require('../')
 
-const ANY_ENTITY = '0xffffffffffffffffffffffffffffffffffffffff'
-const BURN_MANAGER = '0x0000000000000000000000000000000000000001'
+const ANY_ENTITY = '0x' + 'f'.repeat(40) // 0xffff...ffff
+const BURN_MANAGER = '0x' + '0'.repeat(38) + '01' // 0x0000...0001
 
 // Set role such that the ACLOracle's canPerform() function is used to determine the permission
 function createEqOraclePermissionParam(oracleAddress) {
