@@ -20,10 +20,10 @@ function getInstalledApp(receipt, appId, ctx) {
 
 async function installNewApp(dao, appId, baseAppAddress, rootAccount) {
   const receipt = await dao.newAppInstance(
-    appId,          // appId
+    appId, // appId
     baseAppAddress, // appBase
-    '0x',           // initializePayload
-    false,          // setDefault
+    '0x', // initializePayload
+    false, // setDefault
     { from: rootAccount }
   )
 

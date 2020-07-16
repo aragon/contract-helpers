@@ -58,7 +58,9 @@ function decodeEvents(receipt, contractAbi, eventName) {
 
     // Undo checksumed addresses
     Object.entries(decodedArgs).forEach(([key, value]) => {
-      if (isAddress(value)) decodedArgs[key] = value.toLowerCase()
+      if (isAddress(value)) {
+        decodedArgs[key] = value.toLowerCase()
+      }
     })
 
     log.event = eventAbi.name
