@@ -1,17 +1,21 @@
-const { getEvents } = require('../events')
+const { decodeEvents } = require('../decoding')
+const { getArtifacts } = require('../config')
 
-function getInstalledApps(receipt, appIds) {
+function getInstalledApps(receipt, appIds, ctx) {
   appIds = Array.isArray(appIds) ? appIds : appIds ? [appIds] : null
 
-  return getEvents(receipt, 'NewAppProxy')
+  const artifacts = getArtifacts(ctx)
+  const Kernel = artifacts.require('Kernel')
+
+  return decodeEvents(receipt, Kernel.abi, 'NewAppProxy')
     .filter((event) =>
       Array.isArray(appIds) ? appIds.includes(event.args.appId) : true
     )
     .map((event) => event.args.proxy)
 }
 
-function getInstalledApp(receipt, appId) {
-  return getInstalledApps(receipt, appId)[0]
+function getInstalledApp(receipt, appId, ctx) {
+  return getInstalledApps(receipt, appId, ctx)[0]
 }
 
 async function installNewApp(dao, appId, baseAppAddress, rootAccount) {
