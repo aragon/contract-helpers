@@ -40,7 +40,8 @@ async function decodeErrorReasonFromTx(tx, ctx) {
 }
 
 function decodeEvents(receipt, contractAbi, eventName) {
-  const rawLogs = receipt.rawLogs || (receipt.receipt && receipt.receipt.rawLogs) || []
+  const rawLogs =
+    receipt.rawLogs || (receipt.receipt && receipt.receipt.rawLogs) || []
 
   const eventAbi = contractAbi.filter(
     (abi) => abi.name === eventName && abi.type === 'event'

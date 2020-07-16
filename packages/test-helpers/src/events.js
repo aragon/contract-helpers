@@ -3,7 +3,7 @@ const { decodeEvents } = require('./decoding')
 function getEvents(receipt, eventName, { decodeForAbi } = {}) {
   const logs = decodeForAbi
     ? decodeEvents(receipt, decodeForAbi, eventName)
-    : (receipt.logs || (receipt.receipt && receipt.receipt.logs) || [])
+    : receipt.logs || (receipt.receipt && receipt.receipt.logs) || []
 
   return logs.filter((l) => l.event === eventName)
 }
