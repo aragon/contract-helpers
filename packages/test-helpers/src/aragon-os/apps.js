@@ -1,13 +1,9 @@
-const { decodeEvents } = require('../decoding')
-const { getArtifacts } = require('../config')
+const { getEvents } = require('../events')
 
-function getInstalledApps(receipt, appIds, ctx) {
+function getInstalledApps(receipt, appIds) {
   appIds = Array.isArray(appIds) ? appIds : appIds ? [appIds] : null
 
-  const artifacts = getArtifacts(ctx)
-  const Kernel = artifacts.require('Kernel')
-
-  return decodeEvents(receipt, Kernel.abi, 'NewAppProxy')
+  return getEvents(receipt, 'NewAppProxy')
     .filter((event) =>
       Array.isArray(appIds) ? appIds.includes(event.args.appId) : true
     )
@@ -20,10 +16,10 @@ function getInstalledApp(receipt, appId) {
 
 async function installNewApp(dao, appId, baseAppAddress, rootAccount) {
   const receipt = await dao.newAppInstance(
-    appId, // appId
+    appId,          // appId
     baseAppAddress, // appBase
-    '0x', // initializePayload
-    false, // setDefault
+    '0x',           // initializePayload
+    false,          // setDefault
     { from: rootAccount }
   )
 
