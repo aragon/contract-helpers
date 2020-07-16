@@ -2,7 +2,7 @@ const abi = require('web3-eth-abi')
 const { isAddress } = require('web3-utils')
 
 const { getWeb3 } = require('./config')
-const { stripBytePrefix } = require('./')
+const { stripBytePrefix } = require('./bytes')
 
 function decodeErrorReason(returnValue) {
   returnValue = stripBytePrefix(returnValue)
@@ -40,7 +40,8 @@ async function decodeErrorReasonFromTx(tx, ctx) {
 }
 
 function decodeEvents(receipt, contractAbi, eventName) {
-  const rawLogs = receipt.rawLogs || []
+  const rawLogs =
+    receipt.rawLogs || (receipt.receipt && receipt.receipt.rawLogs) || []
 
   const eventAbi = contractAbi.filter(
     (abi) => abi.name === eventName && abi.type === 'event'
@@ -55,13 +56,16 @@ function decodeEvents(receipt, contractAbi, eventName) {
       log.data,
       log.topics.slice(1)
     )
+
     // Undo checksumed addresses
-    const eventArgs = Object.keys(decodedArgs).map((arg) =>
-      isAddress(arg) ? arg.toLowerCase() : arg
-    )
+    Object.entries(decodedArgs).forEach(([key, value]) => {
+      if (isAddress(value)) {
+        decodedArgs[key] = value.toLowerCase()
+      }
+    })
 
     log.event = eventAbi.name
-    log.args = eventArgs
+    log.args = decodedArgs
 
     return log
   })

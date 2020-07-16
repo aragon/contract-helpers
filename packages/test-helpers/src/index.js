@@ -6,6 +6,7 @@ const { injectWeb3 } = require('./config/web3')
 const addresses = require('./addresses')
 const bytes = require('./bytes')
 const decoding = require('./decoding')
+const errors = require('./errors')
 const events = require('./events')
 const mocha = require('./mocha')
 const node = require('./node')
@@ -18,6 +19,7 @@ module.exports = {
   ...addresses,
   ...bytes,
   ...decoding,
+  ...errors,
   ...events,
   ...mocha,
   ...node,

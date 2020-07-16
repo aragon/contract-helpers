@@ -1,5 +1,5 @@
 const abi = require('web3-eth-abi')
-const { stripBytePrefix } = require('../')
+const { stripBytePrefix } = require('../bytes')
 
 function createExecutorId(id) {
   return `0x${String(id).padStart(8, '0')}`

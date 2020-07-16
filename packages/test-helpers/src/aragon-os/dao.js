@@ -1,4 +1,4 @@
-const { getEventArgument } = require('../')
+const { getEventArgument } = require('../events')
 const { getArtifacts } = require('../config')
 
 async function newDao(rootAccount, contractCache, ctx) {

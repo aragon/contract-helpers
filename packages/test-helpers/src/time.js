@@ -1,4 +1,4 @@
-const { bn } = require('./')
+const { bn } = require('./numbers')
 const { getWeb3 } = require('./config')
 
 const ONE_DAY = 60 * 60 * 24
