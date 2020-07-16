@@ -1,3 +1,3 @@
 module.exports = {
-  ZERO_ADDRESS: '0x0000000000000000000000000000000000000000',
+  ZERO_ADDRESS: '0x' + '0'.repeat(40),
 }
