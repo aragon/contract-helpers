@@ -1,8 +1,8 @@
-# Contract Helpers <img align="right" src="https://raw.githubusercontent.com/aragon/design/master/readme-logo.png" height="80px" />
+# Contract Helpers <img align="right" src=".github/assets/aragon.svg" height="80px" />
 
 ## Structure
 
-This is a monorepo containing utilities and helpers for developing smart contracts.
+A monorepo containing utilities and helpers for developing smart contracts.
 
 Includes the following packages (see their packages for documentation):
 
