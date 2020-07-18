@@ -7,15 +7,16 @@ import "../internal/InternalSafeMath.sol";
 
 contract TokenMock {
     using InternalSafeMath for uint256;
-    mapping (address => uint256) private balances;
-    mapping (address => mapping (address => uint256)) private allowed;
-    uint256 private totalSupply_;
-    bool private allowTransfer_;
+
+    bool internal allowTransfer_;
+    uint256 internal totalSupply_;
+    mapping (address => uint256) internal balances;
+    mapping (address => mapping (address => uint256)) internal allowed;
 
     event Approval(address indexed owner, address indexed spender, uint256 value);
     event Transfer(address indexed from, address indexed to, uint256 value);
 
-    // Allow us to set the inital balance for an account on construction
+    // Allow us to set the initial balance for an account on construction
     constructor(address initialAccount, uint256 initialBalance) public {
         balances[initialAccount] = initialBalance;
         totalSupply_ = initialBalance;
