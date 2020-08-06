@@ -1,5 +1,6 @@
 const { decodeEvents } = require('../decoding')
 const { getArtifacts } = require('../config')
+const { getEventArgument } = require('../events')
 
 function getInstalledApps(receipt, appIds, ctx) {
   appIds = Array.isArray(appIds) ? appIds : appIds ? [appIds] : null
@@ -18,6 +19,10 @@ function getInstalledApp(receipt, appId, ctx) {
   return getInstalledApps(receipt, appId, ctx)[0]
 }
 
+function getNewProxyAddress(receipt) {
+  return getEventArgument(receipt, 'NewAppProxy', 'proxy')
+}
+
 async function installNewApp(dao, appId, baseAppAddress, rootAccount) {
   const receipt = await dao.newAppInstance(
     appId, // appId
@@ -34,5 +39,6 @@ async function installNewApp(dao, appId, baseAppAddress, rootAccount) {
 module.exports = {
   getInstalledApp,
   getInstalledApps,
+  getNewProxyAddress,
   installNewApp,
 }

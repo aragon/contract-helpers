@@ -3,16 +3,25 @@ const { getWeb3 } = require('./config')
 const GANACHE_NODE_ID = 'TestRPC'
 const GETH_NODE_ID = 'Geth'
 
-async function isGanache(ctx) {
+async function isNode(ctx, nodeId) {
   const web3 = getWeb3(ctx)
-  const nodeInfo = await web3.eth.getNodeInfo()
-  return nodeInfo.includes(GANACHE_NODE_ID)
+  if (web3.eth.getNodeInfo) {
+    const nodeInfo = await web3.eth.getNodeInfo()
+    return nodeInfo.includes(nodeId)
+  }
+}
+
+async function isGanache(ctx) {
+  const isNodeResult = await isNode(ctx, GANACHE_NODE_ID)
+  if (isNodeResult === undefined) {
+    return web3.currentProvider.host === 'http://localhost:8545'
+  }
+  return isNodeResult
 }
 
 async function isGeth(ctx) {
-  const web3 = getWeb3(ctx)
-  const nodeInfo = await web3.eth.getNodeInfo()
-  return nodeInfo.includes(GETH_NODE_ID)
+  const isNodeResult = await isNode(ctx, GETH_NODE_ID)
+  return isNodeResult !== undefined
 }
 
 module.exports = {
