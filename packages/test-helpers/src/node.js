@@ -21,7 +21,7 @@ async function isGanache(ctx) {
 
 async function isGeth(ctx) {
   const isNodeResult = await isNode(ctx, GETH_NODE_ID)
-  return isNodeResult !== undefined
+  return isNodeResult !== undefined && isNodeResult
 }
 
 module.exports = {
