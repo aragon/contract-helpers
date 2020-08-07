@@ -21,57 +21,30 @@ module.exports = {
      return bs
   },
 
-  getBalance(addr, ctx) {
+  async getBalance(addr, ctx) {
     const web3 = getWeb3(ctx)
-    return new Promise((resolve, reject) => {
-      web3.eth.getBalance(addr, async (err, res) => {
-        if (err || !res) return reject(err)
-        resolve(res)
-      })
-    })
+    return await web3.eth.getBalance(addr)
   },
 
-  getBlockNumber(ctx) {
+  async getBlockNumber(ctx) {
     const web3 = getWeb3(ctx)
-    return new Promise((resolve, reject) => {
-      web3.eth.getBlockNumber(async (err, res) => {
-        if (err || !res) return reject(err)
-        resolve(res)
-      })
-    })
+    return await web3.eth.getBlockNumber()
   },
 
-  getBlock(n, ctx) {
+  async getBlock(n, ctx) {
     const web3 = getWeb3(ctx)
-    return new Promise(async (resolve, reject) => {
-      web3.eth.getBlock(n, (err, res) => {
-        if (err || !res) return reject(err)
-        resolve(res)
-      })
-    })
+    return await web3.eth.getBlock(n)
   },
 
-  sendTransaction(payload, ctx) {
+  async sendTransaction(payload, ctx) {
     const web3 = getWeb3(ctx)
-    return new Promise((resolve, reject) => {
-      web3.eth.sendTransaction(payload, async (err, res) => {
-        if (err || !res) return reject(err)
-        resolve(res)
-      })
-    })
+    return await web3.eth.sendTransaction(payload)
   },
 
-  getNonce(ctx) {
+  async getNonce(ctx) {
     const web3 = getWeb3(ctx)
-    return new Promise((resolve, reject) => {
-      web3.eth.getAccounts((err, acc) => {
-        if (err) return reject(err)
-        web3.eth.getTransactionCount(acc[0], (err, n) => {
-          if (err) return reject(err)
-          resolve(n)
-        })
-      })
-    })
+    const acc = await web3.eth.getAccounts()
+    return await web3.eth.getTransactionCount(acc[0])
   },
 
   sign(payload, address, ctx) {
