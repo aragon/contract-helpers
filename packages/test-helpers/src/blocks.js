@@ -2,11 +2,16 @@ const { getWeb3 } = require('./config')
 
 async function advanceBlock() {
   const web3 = getWeb3()
-  return new Promise((resolve, reject) => web3.currentProvider.send({
-    jsonrpc: '2.0',
-    method: 'evm_mine',
-    id: new Date().getTime()
-  }, (error, result) => error ? reject(error) : resolve(result)))
+  return new Promise((resolve, reject) =>
+    web3.currentProvider.send(
+      {
+        jsonrpc: '2.0',
+        method: 'evm_mine',
+        id: new Date().getTime(),
+      },
+      (error, result) => (error ? reject(error) : resolve(result))
+    )
+  )
 }
 
 async function advanceBlocks(blocks) {
@@ -17,5 +22,5 @@ async function advanceBlocks(blocks) {
 
 module.exports = {
   advanceBlock,
-  advanceBlocks
+  advanceBlocks,
 }
