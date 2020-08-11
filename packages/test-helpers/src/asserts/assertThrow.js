@@ -2,8 +2,8 @@ const { assert } = require('chai')
 const { isGeth } = require('../node')
 const { decodeErrorReasonFromTx } = require('../decoding')
 
-const THROW_ERROR_PREFIX =
-  'Returned error: VM Exception while processing transaction: revert'
+const ERROR_PREFIX = 'Returned error:'
+const THROW_PREFIX = 'VM Exception while processing transaction: revert'
 
 async function assertThrows(
   blockOrPromise,
@@ -83,10 +83,14 @@ async function assertRevert(blockOrPromise, expectedReason, ctx) {
     return
   }
 
-  // Truffle v5 provides `error.reason`, but v4 does not.
-  if (!error.reason && error.message.includes(THROW_ERROR_PREFIX)) {
-    error.reason = error.message.replace(THROW_ERROR_PREFIX, '').trim()
+  // Truffle v5 provides `error.reason`, but v4 and buidler does not.
+  if (!error.reason && error.message.includes(THROW_PREFIX)) {
+    error.reason = error.message
+      .replace(ERROR_PREFIX, '')
+      .replace(THROW_PREFIX, '')
+      .trim()
   }
+
   // Truffle 5 sometimes adds an extra ' -- Reason given: reason.' to the error message 🤷
   error.reason = error.reason
     .replace(` -- Reason given: ${expectedReason}.`, '')
