@@ -83,7 +83,7 @@ async function assertRevert(blockOrPromise, expectedReason, ctx) {
     return
   }
 
-  // Truffle v5 provides `error.reason`, but v4 and buidler does not.
+  // Truffle v5 provides `error.reason`, but truffle v4 and buidler do not.
   if (!error.reason && error.message.includes(THROW_PREFIX)) {
     error.reason = error.message
       .replace(ERROR_PREFIX, '')
@@ -96,15 +96,13 @@ async function assertRevert(blockOrPromise, expectedReason, ctx) {
     .replace(` -- Reason given: ${expectedReason}.`, '')
     .trim()
 
-  if (process.env.SOLIDITY_COVERAGE !== 'true') {
-    assert.equal(
-      error.reason,
-      expectedReason,
-      `Expected revert reason "${expectedReason}" but failed with "${
-        error.reason || 'no reason'
-      }" instead.`
-    )
-  }
+  assert.equal(
+    error.reason,
+    expectedReason,
+    `Expected revert reason "${expectedReason}" but failed with "${
+      error.reason || 'no reason'
+    }" instead.`
+  )
 }
 
 module.exports = {
