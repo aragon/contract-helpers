@@ -4,6 +4,7 @@ const { injectWeb3 } = require('./config/web3')
 
 // Utilities
 const addresses = require('./addresses')
+const blocks = require('./blocks')
 const bytes = require('./bytes')
 const decoding = require('./decoding')
 const errors = require('./errors')
@@ -17,6 +18,7 @@ module.exports = {
   injectArtifacts,
   injectWeb3,
   ...addresses,
+  ...blocks,
   ...bytes,
   ...decoding,
   ...errors,
