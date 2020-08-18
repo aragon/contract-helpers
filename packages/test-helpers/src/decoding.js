@@ -41,7 +41,13 @@ async function decodeErrorReasonFromTx(tx, ctx) {
 
 function decodeEvents(receipt, contractAbi, eventName) {
   const rawLogs =
-    receipt.rawLogs || (receipt.receipt && receipt.receipt.rawLogs) || []
+    // Raw logs from a truffle-contract receipt
+    receipt.rawLogs ||
+    // Potentially nested truffle-contract receipt
+    (receipt.receipt && receipt.receipt.rawLogs) ||
+    // web3.eth.getTransactionReceipt() returns the raw logs as just `receipt.logs`
+    receipt.logs ||
+    []
 
   const eventAbi = contractAbi.filter(
     (abi) => abi.name === eventName && abi.type === 'event'

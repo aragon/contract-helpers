@@ -91,7 +91,7 @@ async function assertRevert(blockOrPromise, expectedReason, ctx) {
       .trim()
   }
 
-  // Truffle 5 sometimes adds an extra ' -- Reason given: reason.' to the error message 🤷
+  // Truffle v5 sometimes adds an extra ' -- Reason given: reason.' to the error message 🤷
   error.reason = error.reason
     .replace(` -- Reason given: ${expectedReason}.`, '')
     .trim()
