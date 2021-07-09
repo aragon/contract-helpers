@@ -4,6 +4,8 @@ const { decodeErrorReasonFromTx } = require('../decoding')
 
 const ERROR_PREFIX = 'Returned error:'
 const THROW_PREFIX = 'VM Exception while processing transaction: revert'
+const THROW_PREFIX_WITH_STRING =
+  'VM Exception while processing transaction: reverted with reason string'
 
 async function assertThrows(
   blockOrPromise,
@@ -84,11 +86,19 @@ async function assertRevert(blockOrPromise, expectedReason, ctx) {
   }
 
   // Truffle v5 provides `error.reason`, but truffle v4 and buidler do not.
-  if (!error.reason && error.message.includes(THROW_PREFIX)) {
-    error.reason = error.message
-      .replace(ERROR_PREFIX, '')
-      .replace(THROW_PREFIX, '')
-      .trim()
+  if (!error.reason) {
+    if (error.message.includes(THROW_PREFIX_WITH_STRING)) {
+      error.reason = error.message
+        .replace(ERROR_PREFIX, '')
+        .replace(THROW_PREFIX_WITH_STRING, '')
+        .replaceAll("'", '')
+        .trim()
+    } else if (error.message.includes(THROW_PREFIX)) {
+      error.reason = error.message
+        .replace(ERROR_PREFIX, '')
+        .replace(THROW_PREFIX, '')
+        .trim()
+    }
   }
 
   // Truffle v5 sometimes adds an extra ' -- Reason given: reason.' to the error message 🤷
