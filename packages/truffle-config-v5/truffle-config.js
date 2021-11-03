@@ -62,6 +62,12 @@ module.exports = {
       provider: providerForNetwork("mainnet"),
       gas: 7.9e6
     },
+    fuji: {
+      provider: providerForNetwork('fuji'),
+      network_id: "*",
+      gasPrice: 225000000000,
+      blockGasLimit: 8000000
+    },
     ropsten: {
       network_id: 3,
       provider: providerForNetwork("ropsten"),
