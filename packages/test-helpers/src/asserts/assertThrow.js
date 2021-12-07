@@ -4,6 +4,7 @@ const { decodeErrorReasonFromTx } = require('../decoding')
 
 const ERROR_PREFIX = 'Returned error:'
 const THROW_PREFIX = 'VM Exception while processing transaction: revert'
+const THROW_PREFIX_V2 = 'VM Exception while processing transaction: reverted with reason string'
 
 async function assertThrows(
   blockOrPromise,
@@ -87,8 +88,10 @@ async function assertRevert(blockOrPromise, expectedReason, ctx) {
   if (!error.reason && error.message.includes(THROW_PREFIX)) {
     error.reason = error.message
       .replace(ERROR_PREFIX, '')
+      .replace(THROW_PREFIX_V2, '')
       .replace(THROW_PREFIX, '')
       .trim()
+      .replace(/^'|'$/g,"")
   }
 
   // Truffle v5 sometimes adds an extra ' -- Reason given: reason.' to the error message 🤷
